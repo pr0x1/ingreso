@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    tools:context=".CentrosActivity">
+
+    <TextView
+        android:id="@+id/tAlmOrig"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/alm_origen" />
+
+    <Spinner
+        android:id="@+id/spAlmOrig"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:id="@+id/vCentDest"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/holo_blue_dark"
+        >
+
+    </View>
+    <TextView
+        android:id="@+id/tCenDest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/cent_dest" />
+    <Spinner
+        android:id="@+id/spCentDest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <View
+        android:id="@+id/vAlmDest"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/holo_blue_dark">
+
+    </View>
+    <TextView
+        android:id="@+id/tAlmDest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/alm_dest" />
+    <Spinner
+        android:id="@+id/spAlmDest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/imageButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Siguiente"
+        android:onClick="goCentrosActivity"
+        android:layout_marginTop="16dp"
+        android:contentDescription="TODO" />
+
+
+</LinearLayout>

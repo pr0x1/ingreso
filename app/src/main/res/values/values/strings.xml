@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Ingreso Rollos</string>
+    <string name="app_name">Traslados Rollos</string>
     <string name="alm_origen">Por favor lea etiqueta destino</string>
     <string name="cent_dest">Centro Destino</string>
     <string name="alm_dest">Almcén Destino</string>
