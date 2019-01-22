@@ -65,7 +65,7 @@ public class CentrosActivity extends AppCompatActivity {
         });
     }
     public void goCentrosActivity(CentrosAlmacen centrosAlmacen){
-        Intent i = new Intent(contexto, TransporteActivity.class);
+        Intent i = new Intent(contexto, LecturaActivity.class);
 
         if (validaCampos(centrosAlmacen)) {
             i.putExtra("centrosAlm", centrosAlmacen);
@@ -83,14 +83,14 @@ public class CentrosActivity extends AppCompatActivity {
             centrosAlmacen = new CentrosAlmacen();
             String fragmento = "";
             contador = 0;
-            while (token.hasMoreTokens()) {
+            //while (token.hasMoreTokens()) {
                 // Lee centro origen;
                 if (token.hasMoreTokens()) {
                     fragmento = token.nextToken();
                     centrosAlmacen.setCentroOrigen(fragmento);
                     contador++;
-                }
-                if (token.hasMoreTokens()) {
+               }
+               /* if (token.hasMoreTokens()) {
                     fragmento = token.nextToken();
                     centrosAlmacen.setDesCentroOrigen(fragmento);
                     contador++;
@@ -125,16 +125,16 @@ public class CentrosActivity extends AppCompatActivity {
                     centrosAlmacen.setDesAlmacenDestino(fragmento);
                     contador++;
                 }
+*/
 
-
-            }
+            //}
         }
         return centrosAlmacen;
 
     }
     private boolean validaCampos(CentrosAlmacen centrosAlmacen){
         if(centrosAlmacen!=null) {
-            if(contador<8){
+            if(contador<1){
                 return false;
             }else{
                 return true;

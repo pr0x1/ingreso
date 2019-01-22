@@ -51,7 +51,7 @@ public class LecturaActivity extends AppCompatActivity implements ILectorActivit
         setContentView(R.layout.activity_lectura);
         Intent intent = getIntent();
         centrosAlmacen  = intent.getParcelableExtra("centrosAlm");
-        transportador = intent.getParcelableExtra("transportador");
+        //transportador = intent.getParcelableExtra("transportador");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -105,7 +105,7 @@ public class LecturaActivity extends AppCompatActivity implements ILectorActivit
     private void populateViewPager() {
 
         TabDetails tab;
-        tab = new TabDetails("Lectura", LectorFragment.newInstance(centrosAlmacen,transportador));
+        tab = new TabDetails("Lectura", LectorFragment.newInstance(centrosAlmacen));
         mSectionsPagerAdapter.addFragment(tab);
         tab = new TabDetails("Traslado",new EnvioFragment());
         mSectionsPagerAdapter.addFragment(tab);

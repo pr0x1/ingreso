@@ -35,15 +35,15 @@ public class LectorFragment extends Fragment  {
     private String mParam1;
     private String mParam2;
     private CentrosAlmacen centrosAlmacen;
-    private Transportador  transportador;
+   // private Transportador  transportador;
     public LectorFragment() {
 
     }
-    public static LectorFragment newInstance(CentrosAlmacen param1, Transportador param2) {
+    public static LectorFragment newInstance(CentrosAlmacen param1) {
         LectorFragment fragment = new LectorFragment();
         Bundle args = new Bundle();
         args.putParcelable("centroOrigen", param1);
-        args.putParcelable("transportador", param2);
+       // args.putParcelable("transportador", param2);
         fragment.setArguments(args);
         return fragment;
 
@@ -66,10 +66,10 @@ public class LectorFragment extends Fragment  {
         View v = inflater.inflate(R.layout.fragment_lector, container, false);
         final EditText textEtiqueta = (EditText) v.findViewById(R.id.fltextView);
         textEtiqueta.setInputType(InputType.TYPE_NULL);
-        if (getArguments().containsKey("transportador") && getArguments().containsKey("centroOrigen")) {
+        if ( getArguments().containsKey("centroOrigen")) {
             // A choice was made, so get the choice.
             centrosAlmacen = getArguments().getParcelable("centroOrigen");
-            transportador = getArguments().getParcelable("transportador");
+            //transportador = getArguments().getParcelable("transportador");
             // Check the radio button choice.
         }
 
@@ -155,41 +155,16 @@ public class LectorFragment extends Fragment  {
                 if(token.hasMoreTokens()){
                     texto = token.nextToken();
 				}
-                lote.setCentro_destino(centrosAlmacen.getCentroDestino());
-                Log.i(Tag,"Centro origen"+lote.getCentro_destino());
-
                 // Lee Número de pedido
                 if(token.hasMoreTokens()){
                     texto = token.nextToken();
-                    if (texto.equals("*")) {
-                        lote.setNumPedido("");
-                    } else {
-                        lote.setNumPedido(texto);
-                        if(lote.getCentro().equals("3000")){
-                            lote.setNumPedido("");
-                        }
-                    }
-                }else{
-                    lote.setNumPedido("");
 
                 }
-                Log.i(Tag,"Pedido: " +texto);
-
                 // Lee Posición del pedido
                 if(token.hasMoreTokens()){
                     texto = token.nextToken();
-                    if (texto.equals("*")) {
-                        lote.setPosPedido("");
-                    } else {
-                        lote.setPosPedido(texto);
-                        if(lote.getCentro().equals("3000")){
-                            lote.setPosPedido("");
-                        }
-                    }
-                }else{
-                    lote.setPosPedido("");
+
                 }
-                Log.i(Tag,"Pos Ped: " +texto);
 
                 // Lee Material
                 if(token.hasMoreTokens()){
@@ -202,7 +177,7 @@ public class LectorFragment extends Fragment  {
                 }else{
                     lote.setMaterial("");
                 }
-                Log.i(Tag,"Pos Ped: " +texto);
+                Log.i(Tag,"Material: " +texto);
 
 
                 // Lee # de rollo
@@ -223,54 +198,17 @@ public class LectorFragment extends Fragment  {
                 // Lee cantidad y validad en caso de excepción
                 if(token.hasMoreTokens()){
                     texto = token.nextToken();
-                    if (texto.equals("*")) {
-                        lote.setCantidad(0);
-                    } else {
-                        try {
-                            double cant = Double.parseDouble(texto);
-                            lote.setCantidad(cant);
-                        } catch (NumberFormatException ex) {
-                            lote.setCantidad(0);
-                        }
-                    }
-                }else{
-                    lote.setCantidad(0);
-                }
-                Log.i(Tag,"Cantidad: " +texto);
+               }
                 // Lee Unidad de medida
                 if(token.hasMoreTokens()){
                     texto = token.nextToken();
-                    if (texto.equals("*")) {
-                        lote.setUnidad_medida("");
-                    } else {
-                        lote.setUnidad_medida(texto);
-                    }
-                }else{
-                    lote.setUnidad_medida("");
                 }
-                Log.i(Tag,"UM: " +texto);
+               // Log.i(Tag,"UM: " +texto);
                 // Lee Cliente
                 if(token.hasMoreTokens()){
                     texto = token.nextToken();
-                    if (texto.equals("*")) {
-                        lote.setCliente("");
-                    } else {
-                        lote.setCliente(texto);
-                    }
-                }else{
-                    lote.setCliente("");
-                }
-                Log.i(Tag,"Cliente: " +texto);
-                lote.setPlaca(transportador.getPlaca().toUpperCase());
-                Log.i(Tag,"Placa: " +texto);
-                lote.setDespa("NOPROCESADO");
-                lote.setRecep("NOPROCESADO");
-                // Aqui va el almacen origen
-                lote.setAlmacen(centrosAlmacen.getAlmacenOrigen());
-                //  Aquí va el almacén destino
-                lote.setAlmacen_destino(centrosAlmacen.getAlmacenDestino());
-                // Aquí va el transportador
-                lote.setTransportador(transportador.getCodigo());
+
+               }
 
             }
         }
