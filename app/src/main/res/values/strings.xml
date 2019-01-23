@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Ingreso Rollos</string>
-    <string name="alm_origen">Por favor lea etiqueta destino</string>
+    <string name="alm_origen">Por favor lea etiqueta del centro Receptor</string>
     <string name="cent_dest">Centro Destino</string>
     <string name="alm_dest">Almcén Destino</string>
     <string name="transportadora">Por favor lea etiqueta transportador</string>
@@ -17,6 +17,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btnIngreso">Ingresar</string>
 
 
 </resources>

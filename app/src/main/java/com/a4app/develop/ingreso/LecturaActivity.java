@@ -107,7 +107,7 @@ public class LecturaActivity extends AppCompatActivity implements ILectorActivit
         TabDetails tab;
         tab = new TabDetails("Lectura", LectorFragment.newInstance(centrosAlmacen));
         mSectionsPagerAdapter.addFragment(tab);
-        tab = new TabDetails("Traslado",new EnvioFragment());
+        tab = new TabDetails("Ingreso",new EnvioFragment());
         mSectionsPagerAdapter.addFragment(tab);
         mViewPager.setAdapter(mSectionsPagerAdapter);
         tabLayout.setupWithViewPager(mViewPager);

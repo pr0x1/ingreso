@@ -43,9 +43,9 @@ public class CentrosAlmacen implements Parcelable {
         desAlmacenDestino = in.readString();
 
     }
-    public CentrosAlmacen(String centroOringen, String desCentroOrigen, String almacenOrigen, String desAlmacenOrigen,
+    public CentrosAlmacen(String centroOrigen, String desCentroOrigen, String almacenOrigen, String desAlmacenOrigen,
                           String centroDestino, String desCentroDestino, String almacenDestino, String desAlmacenDestino){
-        this.centroOrigen = centroOringen;
+        this.centroOrigen = centroOrigen;
         this.desCentroOrigen = desCentroOrigen;
         this.almacenOrigen = almacenOrigen;
         this.desAlmacenOrigen = desAlmacenOrigen;
@@ -84,7 +84,7 @@ public class CentrosAlmacen implements Parcelable {
         return centroOrigen;
     }
 
-    public void setCentroOrigen(String centroOringen) {
+    public void setCentroOrigen(String centroOrigen) {
         this.centroOrigen = centroOrigen;
     }
 

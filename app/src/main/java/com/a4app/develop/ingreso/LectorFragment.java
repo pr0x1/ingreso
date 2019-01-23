@@ -198,7 +198,20 @@ public class LectorFragment extends Fragment  {
                 // Lee cantidad y validad en caso de excepción
                 if(token.hasMoreTokens()){
                     texto = token.nextToken();
-               }
+                    if (texto.equals("*")) {
+                        lote.setCantidad(0);
+                    } else {
+                        try {
+                            double cant = Double.parseDouble(texto);
+                            lote.setCantidad(cant);
+                        } catch (NumberFormatException ex) {
+                            lote.setCantidad(0);
+                        }
+                    }
+                }else{
+                    lote.setCantidad(0);
+                }
+                Log.i(Tag,"Cantidad: " +texto);
                 // Lee Unidad de medida
                 if(token.hasMoreTokens()){
                     texto = token.nextToken();

@@ -31,7 +31,9 @@ import com.a4app.develop.ingreso.modelo.SwipeToDeleteCallback;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -120,8 +122,14 @@ public class EnvioFragment extends Fragment {
             {
 
                 if(validadConexion()) {
+                    OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                            .connectTimeout(1, TimeUnit.MINUTES)
+                            .readTimeout(1, TimeUnit.MINUTES)
+                            .writeTimeout(1, TimeUnit.MINUTES)
+                            .build();
                     Retrofit retrofit = new Retrofit.Builder()
                             .baseUrl("http://10.1.2.102:8080/apiTraslados/apiTraslados/")
+                            .client(okHttpClient)
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
                     RollosService rollosService = retrofit.create(RollosService.class);

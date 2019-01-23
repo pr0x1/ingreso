@@ -52,7 +52,7 @@ public class CentrosActivity extends AppCompatActivity {
                 if(!textoLeido.equals("") && !textoLeido.isEmpty() && textoLeido != null) {
                 centrosAlmacen =  procesaLecturaCentros(textoLeido);
                 goCentrosActivity(centrosAlmacen);
-                   CharSequence text = "Cambiado!After";
+                   CharSequence text = "Centro origen: "+ centrosAlmacen.getDesCentroOrigen() + " leido" ;
                     int duration = Toast.LENGTH_SHORT;
 
                     Toast toast = Toast.makeText(contexto, text, duration);
@@ -90,11 +90,11 @@ public class CentrosActivity extends AppCompatActivity {
                     centrosAlmacen.setCentroOrigen(fragmento);
                     contador++;
                }
-               /* if (token.hasMoreTokens()) {
+                if (token.hasMoreTokens()) {
                     fragmento = token.nextToken();
                     centrosAlmacen.setDesCentroOrigen(fragmento);
                     contador++;
-                }
+                }/*
                 if (token.hasMoreTokens()) {
                     fragmento = token.nextToken();
                     centrosAlmacen.setAlmacenOrigen(fragmento);
