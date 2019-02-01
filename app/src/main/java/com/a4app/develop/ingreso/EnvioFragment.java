@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -56,6 +57,8 @@ public class EnvioFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private TableLayout tableLayout;
     private View vista;
+    private ProgressBar progressBar;
+
 
 
 
@@ -112,6 +115,8 @@ public class EnvioFragment extends Fragment {
         // Inflate the layout for this fragment
         vista = inflater.inflate(R.layout.fragment_envio, container, false);
         //tableLayout = (TableLayout) vista.findViewById(R.id.tablaRollo);
+        progressBar = vista.findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.GONE);
         rvRollos = (RecyclerView) vista.findViewById(R.id.rvTablaRollos);
         rolloLayout = (LinearLayout) vista.findViewById(R.id.tablaRollosLayaout);
         Button btonTransportar = (Button) vista.findViewById(R.id.btnTransportar);
@@ -133,6 +138,7 @@ public class EnvioFragment extends Fragment {
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
                     RollosService rollosService = retrofit.create(RollosService.class);
+                    progressBar.setVisibility(View.VISIBLE);
 
                     Call<List<Respuesta>> call = rollosService.enviaLotes(lotes);
                     call.enqueue(new Callback<List<Respuesta>>() {
@@ -144,6 +150,7 @@ public class EnvioFragment extends Fragment {
                                 Log.i("ApiRestfull", a.getTipo());
                                 Log.i("ApiRestfull", a.getMensaje());
                             }
+                            progressBar.setVisibility(View.GONE);
                             Intent intent = new Intent(vista.getContext(), MensajesActivity.class);
                             intent.putParcelableArrayListExtra("respuestas", respuestas);
                             startActivity(intent);
@@ -153,11 +160,13 @@ public class EnvioFragment extends Fragment {
                         public void onFailure(Call<List<Respuesta>> call, Throwable t) {
                             Toast toast = Toast.makeText(context, "Error conexión a SAP", Toast.LENGTH_LONG);
                             toast.show();
+                            progressBar.setVisibility(View.GONE);
                         }
                     });
                 }else{
                     Toast toast = Toast.makeText(context, "Error de Conexion a red", Toast.LENGTH_LONG);
                     toast.show();
+                    progressBar.setVisibility(View.GONE);
                 }
 
             }
