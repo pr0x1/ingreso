@@ -16,7 +16,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.a4app.develop.ingreso.modelo.CentrosAlmacen;
 import com.a4app.develop.ingreso.modelo.Lote;
@@ -232,7 +231,7 @@ public class LecturaActivity extends AppCompatActivity implements ILectorActivit
     @Override
     protected void onStop() {
         super.onStop();
-        Toast.makeText( this, "OnStop", Toast.LENGTH_SHORT).show();
+
     }
 
     @Override

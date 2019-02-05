@@ -70,9 +70,22 @@ public class MensajesActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent i = new Intent(this, CentrosActivity.class);
-        startActivity(i);
+        if(!tieneError()) {
+            Intent i = new Intent(this, CentrosActivity.class);
+            startActivity(i);
+        }
 
+    }
+
+    public boolean tieneError() {
+        boolean error = false;
+        for (Respuesta res : respuestas) {
+            if (res.getTipo().equalsIgnoreCase("E") ||
+                    res.getTipo().equalsIgnoreCase("A")) {
+                error = true;
+            }
+        }
+        return error;
     }
 
 
