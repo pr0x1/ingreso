@@ -76,6 +76,7 @@ public class EnvioFragment extends Fragment {
    private LoteAdapter adapter;
    private LinearLayout rolloLayout;
    private Context context;
+    private Button btonTransportar;
 
     public EnvioFragment() {
         // Required empty public constructor
@@ -119,7 +120,7 @@ public class EnvioFragment extends Fragment {
         progressBar.setVisibility(View.GONE);
         rvRollos = (RecyclerView) vista.findViewById(R.id.rvTablaRollos);
         rolloLayout = (LinearLayout) vista.findViewById(R.id.tablaRollosLayaout);
-        Button btonTransportar = (Button) vista.findViewById(R.id.btnTransportar);
+        btonTransportar = (Button) vista.findViewById(R.id.btnTransportar);
         btonTransportar.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -128,18 +129,18 @@ public class EnvioFragment extends Fragment {
 
                 if(validadConexion()) {
                     OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                            .connectTimeout(1, TimeUnit.MINUTES)
-                            .readTimeout(1, TimeUnit.MINUTES)
-                            .writeTimeout(1, TimeUnit.MINUTES)
+                            .connectTimeout(3, TimeUnit.MINUTES)
+                            .readTimeout(3, TimeUnit.MINUTES)
+                            .writeTimeout(3, TimeUnit.MINUTES)
                             .build();
                     Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl("http://10.1.2.102:8080/apiTraslados/apiTraslados/")
+                            .baseUrl("http://10.1.2.20:8080/apiTraslados/apiTraslados/")
                             .client(okHttpClient)
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
                     RollosService rollosService = retrofit.create(RollosService.class);
                     progressBar.setVisibility(View.VISIBLE);
-
+                    btonTransportar.setEnabled(false);
                     Call<List<Respuesta>> call = rollosService.enviaLotes(lotes);
                     call.enqueue(new Callback<List<Respuesta>>() {
                         @Override
@@ -151,6 +152,7 @@ public class EnvioFragment extends Fragment {
                                 Log.i("ApiRestfull", a.getMensaje());
                             }
                             progressBar.setVisibility(View.GONE);
+                            btonTransportar.setEnabled(true);
                             Intent intent = new Intent(vista.getContext(), MensajesActivity.class);
                             intent.putParcelableArrayListExtra("respuestas", respuestas);
                             startActivity(intent);
@@ -158,9 +160,16 @@ public class EnvioFragment extends Fragment {
 
                         @Override
                         public void onFailure(Call<List<Respuesta>> call, Throwable t) {
-                            Toast toast = Toast.makeText(context, "Error conexión a SAP", Toast.LENGTH_LONG);
+                            Toast toast = Toast.makeText(context, t.toString(), Toast.LENGTH_LONG);
                             toast.show();
                             progressBar.setVisibility(View.GONE);
+                            btonTransportar.setEnabled(true);
+                            Intent intent = new Intent(vista.getContext(), MensajesActivity.class);
+                            Respuesta respuesta = new Respuesta("E",t.toString());
+                            ArrayList<Respuesta> respuestas = new ArrayList<>();
+                            respuestas.add(respuesta);
+                            intent.putParcelableArrayListExtra("respuestas", respuestas);
+                            startActivity(intent);
                         }
                     });
                 }else{
