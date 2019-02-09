@@ -134,6 +134,7 @@ public class EnvioFragment extends Fragment {
                             .writeTimeout(3, TimeUnit.MINUTES)
                             .build();
                     Retrofit retrofit = new Retrofit.Builder()
+                            //.baseUrl("http://10.36.1.14:8040/apiTraslados/apiTraslados/") sonda
                             .baseUrl("http://10.1.2.20:8080/apiTraslados/apiTraslados/")
                             .client(okHttpClient)
                             .addConverterFactory(GsonConverterFactory.create())
@@ -248,6 +249,7 @@ public class EnvioFragment extends Fragment {
 
             adapter.addItem(lote, 0);
             calculaKg();
+            cantidadRollos();
 
 
     }
@@ -263,6 +265,15 @@ public class EnvioFragment extends Fragment {
         kilosText.setText(kg);
 
     }
+    /**
+     * Informa la cantidad de rollos en la lista
+     */
+
+    public void cantidadRollos(){
+        TextView cantiRollos = (TextView) vista.findViewById(R.id.tvCantRollos);
+        cantiRollos.setText(String.valueOf(lotes.size()));
+
+    }
     private void enableSwipeToDeleteAndUndo() {
 
         SwipeToDeleteCallback swipeToDeleteCallback = new SwipeToDeleteCallback(context) {
@@ -275,6 +286,7 @@ public class EnvioFragment extends Fragment {
 
                 adapter.removeItem(position);
                 calculaKg();
+                cantidadRollos();
 
 
                 Snackbar snackbar = Snackbar
@@ -286,6 +298,7 @@ public class EnvioFragment extends Fragment {
                         adapter.restoreItem(item, position);
                         rvRollos.scrollToPosition(position);
                         calculaKg();
+                        cantidadRollos();
                     }
                 });
 
