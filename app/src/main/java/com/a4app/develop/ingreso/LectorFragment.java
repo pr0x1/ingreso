@@ -214,7 +214,7 @@ public class LectorFragment extends Fragment  {
                 Log.i(Tag,"Cantidad: " +texto);
                 // Lee Unidad de medida
                 if(token.hasMoreTokens()){
-                    texto = token.nextToken();
+                    texto = "KG";
                 }
                // Log.i(Tag,"UM: " +texto);
                 // Lee Cliente
